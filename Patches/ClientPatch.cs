@@ -1,6 +1,7 @@
 using System.Globalization;
 using HarmonyLib;
 using InnerNet;
+using Hazel;
 using UnityEngine;
 using TownOfHostY.Modules;
 using static TownOfHostY.Translator;
@@ -123,9 +124,59 @@ class KickPlayerPatch
 [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.SendAllStreamedObjects))]
 class InnerNetObjectSerializePatch
 {
-    public static void Prefix()
+    public static bool Prefix(InnerNetClient __instance, ref bool __result)
     {
         if (AmongUsClient.Instance.AmHost)
             GameOptionsSender.SendAllGameOptions();
+
+        //9人以上部屋で落ちる現象の対策コード
+        __result = false;
+        Il2CppSystem.Collections.Generic.List<InnerNetObject> obj = __instance.allObjects;
+        lock (obj)
+        {
+            for (int i = 0; i < __instance.allObjects.Count; i++)
+            {
+                InnerNetObject innerNetObject = __instance.allObjects[i];
+                if (innerNetObject && innerNetObject.IsDirty && (innerNetObject.AmOwner || (innerNetObject.OwnerId == -2 && __instance.AmHost)))
+                {
+                    MessageWriter messageWriter = __instance.Streams[(int)innerNetObject.sendMode];
+                    messageWriter.StartMessage(1);
+                    messageWriter.WritePacked(innerNetObject.NetId);
+                    try
+                    {
+                        if (innerNetObject.Serialize(messageWriter, false))
+                        {
+                            messageWriter.EndMessage();
+                        }
+                        else
+                        {
+                            messageWriter.CancelMessage();
+                        }
+                        if (innerNetObject.Chunked && innerNetObject.IsDirty)
+                        {
+                            __result = true;
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Logger.Info($"Exception:{ex.Message}", "InnerNetClient");
+                        messageWriter.CancelMessage();
+                    }
+                    if (messageWriter.HasBytes(7))
+                    {
+                        messageWriter.EndMessage();
+                        if (DebugModeManager.IsDebugMode)
+                        {
+                            Logger.Info($"SendAllStreamedObjects", "InnerNetClient");
+                        }
+                        __instance.SendOrDisconnect(messageWriter);
+                        messageWriter.Clear(SendOption.Reliable);
+                        messageWriter.StartMessage(5);
+                        messageWriter.Write(__instance.GameId);
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
