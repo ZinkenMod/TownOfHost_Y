@@ -204,8 +204,14 @@ class InnerNetObjectSerializePatch
         [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.SendOrDisconnect)), HarmonyPrefix]
         public static void SendOrDisconnectPatch(InnerNetClient __instance, MessageWriter msg)
         {
-            if (msg.Length > 1000)
+            if (DebugModeManager.IsDebugMode)
+            {
+                Logger.Info($"SendOrDisconnectPatch:Packet({msg.Length})", "InnerNetClient");
+            }
+            else if (msg.Length > 1000)
+            {
                 Logger.Info($"SendOrDisconnectPatch:Large Packet({msg.Length})", "InnerNetClient");
+            }
         }
         [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.SendInitialData)), HarmonyPrefix]
         public static bool SendInitialDataPatch(InnerNetClient __instance, int clientId)
