@@ -129,55 +129,74 @@ class InnerNetObjectSerializePatch
         if (AmongUsClient.Instance.AmHost)
             GameOptionsSender.SendAllGameOptions();
 
-        //9人以上部屋で落ちる現象の対策コード
-        __result = false;
-        var obj = __instance.allObjects;
-        lock (obj)
-        {
-            for (int i = 0; i < __instance.allObjects.Count; i++)
+            //いったんバッファにたまっている分を送信する
+            for (int j = 0; j < __instance.Streams.Length; j++)
             {
-                InnerNetObject innerNetObject = __instance.allObjects[i];
-                if (innerNetObject && innerNetObject.IsDirty && (innerNetObject.AmOwner || (innerNetObject.OwnerId == -2 && __instance.AmHost)))
+                MessageWriter messageWriter2 = __instance.Streams[j];
+                if (messageWriter2.HasBytes(7))
                 {
-                    var messageWriter = MessageWriter.Get(SendOption.Reliable);
-                    messageWriter.StartMessage(5);
-                    messageWriter.Write(__instance.GameId);
-                    messageWriter.StartMessage(1);
-                    messageWriter.WritePacked(innerNetObject.NetId);
-                    try
+                    messageWriter2.EndMessage();
+                    if (DebugModeManager.IsDebugMode)
                     {
-                        if (innerNetObject.Serialize(messageWriter, false))
-                        {
-                            messageWriter.EndMessage();
-                        }
-                        else
-                        {
-                            messageWriter.CancelMessage();
-                        }
-                        if (innerNetObject.Chunked && innerNetObject.IsDirty)
-                        {
-                            __result = true;
-                        }
+                        Logger.Info($"Send Buffer before SendAllStreamedObjects", "InnerNetClient");
                     }
-                    catch (System.Exception ex)
-                    {
-                        Logger.Info($"Exception:{ex.Message}", "InnerNetClient");
-                        messageWriter.CancelMessage();
-                    }
-                    if (messageWriter.HasBytes(7))
-                    {
-                        messageWriter.EndMessage();
-                        if (DebugModeManager.IsDebugMode)
-                        {
-                            Logger.Info($"SendAllStreamedObjects", "InnerNetClient");
-                        }
-                        __instance.SendOrDisconnect(messageWriter);
-                    }
-                    messageWriter.Recycle();
+                    __instance.SendOrDisconnect(messageWriter2);
+                    messageWriter2.Clear((SendOption)j);
+                    messageWriter2.StartMessage(5);
+                    messageWriter2.Write(__instance.GameId);
                 }
             }
+
+            //9人以上部屋で落ちる現象の対策コード
+            __result = false;
+            var obj = __instance.allObjects;
+            lock (obj)
+            {
+                for (int i = 0; i < __instance.allObjects.Count; i++)
+                {
+                    InnerNetObject innerNetObject = __instance.allObjects[i];
+                    if (innerNetObject && innerNetObject.IsDirty && (innerNetObject.AmOwner || (innerNetObject.OwnerId == -2 && __instance.AmHost)))
+                    {
+                        var messageWriter = MessageWriter.Get(SendOption.Reliable);
+                        messageWriter.StartMessage(5);
+                        messageWriter.Write(__instance.GameId);
+                        messageWriter.StartMessage(1);
+                        messageWriter.WritePacked(innerNetObject.NetId);
+                        try
+                        {
+                            if (innerNetObject.Serialize(messageWriter, false))
+                            {
+                                messageWriter.EndMessage();
+                            }
+                            else
+                            {
+                                messageWriter.CancelMessage();
+                            }
+                            if (innerNetObject.Chunked && innerNetObject.IsDirty)
+                            {
+                                __result = true;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Logger.Info($"Exception:{ex.Message}", "InnerNetClient");
+                            messageWriter.CancelMessage();
+                        }
+                        if (messageWriter.HasBytes(7))
+                        {
+                            messageWriter.EndMessage();
+                            if (DebugModeManager.IsDebugMode)
+                            {
+                                Logger.Info($"SendAllStreamedObjects", "InnerNetClient");
+                            }
+                            __instance.SendOrDisconnect(messageWriter);
+                        }
+                        messageWriter.Recycle();
+                    }
+                }
+            }
+            return false;
         }
-        return false;
     }
     [HarmonyPatch]
     class InnerNetClientPatch
@@ -236,6 +255,24 @@ class InnerNetObjectSerializePatch
         /// <param name="clientId"></param>
         public static void WriteSpawnMessageEx(InnerNetClient __instance, InnerNetObject netObjParent, int ownerId, SpawnFlags flags, int clientId = -1)
         {
+            //いったんバッファにたまっている分を送信する
+            for (int j = 0; j < __instance.Streams.Length; j++)
+            {
+                MessageWriter messageWriter2 = __instance.Streams[j];
+                if (messageWriter2.HasBytes(7))
+                {
+                    messageWriter2.EndMessage();
+                    if (DebugModeManager.IsDebugMode)
+                    {
+                        Logger.Info($"Send Buffer before WriteSpawnMessageEx", "InnerNetClient");
+                    }
+                    __instance.SendOrDisconnect(messageWriter2);
+                    messageWriter2.Clear((SendOption)j);
+                    messageWriter2.StartMessage(5);
+                    messageWriter2.Write(__instance.GameId);
+                }
+            }
+
             Logger.Info($"WriteSpawnMessageEx", "InnerNetClient");
 
             InnerNetObject[] componentsInChildren = netObjParent.GetComponentsInChildren<InnerNetObject>();
