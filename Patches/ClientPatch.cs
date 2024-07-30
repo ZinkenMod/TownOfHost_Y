@@ -249,7 +249,7 @@ class InnerNetObjectSerializePatch
             {
                 msg.StartMessage(6);
                 msg.Write(__instance.GameId);
-                msg.Write(clientId);
+                msg.WritePacked(clientId);
             }
             {
                 msg.StartMessage(4);
