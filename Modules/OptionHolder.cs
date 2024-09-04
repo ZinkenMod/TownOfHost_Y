@@ -278,6 +278,9 @@ public static class Options
     public static OptionItem CheaterAutoBan;
     public static OptionItem CheatLobbyKill;
 
+    // 8人以上のパケット問題
+    public static OptionItem FixSpawnPacketSize;
+
     // ModGameMode
     public static bool IsHASMode => CurrentGameMode == CustomGameMode.HideAndSeek;
     public static bool IsCCMode => CurrentGameMode == CustomGameMode.CatchCat;
@@ -346,6 +349,11 @@ public static class Options
     {
         if (IsLoaded) return;
         OptionSaver.Initialize();
+
+        //9人以上部屋で落ちる現象の対策
+        FixSpawnPacketSize = BooleanOptionItem.Create(2, "FixSpawnPacketSize", false, TabGroup.MainSettings, true)
+            .SetColor(new Color32(255, 255, 0, 255))
+            .SetGameMode(CustomGameMode.All);
 
         // プリセット
         _ = PresetOptionItem.Create(0, TabGroup.ModMainSettings)
