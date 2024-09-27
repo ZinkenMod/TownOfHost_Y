@@ -261,6 +261,7 @@ namespace TownOfHostY
             ClassInjector.RegisterTypeInIl2Cpp<ErrorText>();
 
             Harmony.PatchAll();
+            Application.quitting += new Action(Utils.SaveNowLog);
         }
     }
     public enum CustomDeathReason
