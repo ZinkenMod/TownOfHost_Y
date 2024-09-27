@@ -1551,13 +1551,25 @@ public static class Utils
     }
     public static void DumpLog()
     {
-        string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string filename = $"{System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/TOH_Y-v{Main.PluginVersion}-{t}.log";
-        FileInfo file = new(@$"{System.Environment.CurrentDirectory}/BepInEx/LogOutput.log");
-        file.CopyTo(@filename);
-        OpenDirectory(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+        var desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        CopyLog(desktop);
+        OpenDirectory(desktop);
         if (PlayerControl.LocalPlayer != null)
-            HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, "デスクトップにログを保存しました。バグ報告チケットを作成してこのファイルを添付してください。");
+            HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, "デスクトップにログを保存しました。Discordの不具合報告フォーラムにこのファイルを添付してください。");
+    }
+    public static void SaveNowLog()
+    {
+        var logs = Directory.CreateDirectory("TOH_LOGS");
+        // 7日以上前のログを削除
+        logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f => f.Delete());
+        CopyLog(logs.FullName);
+    }
+    public static void CopyLog(string folder)
+    {
+        string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+        string fileName = $"{folder}/TownOfHost-v{Main.PluginVersion}-{t}.log";
+        FileInfo file = new(@$"{System.Environment.CurrentDirectory}/BepInEx/LogOutput.log");
+        file.CopyTo(fileName);
     }
     public static void OpenDirectory(string path)
     {
