@@ -1576,13 +1576,9 @@ public static class Utils
         var logs = Directory.CreateDirectory("TOH_LOGS");
         OpenDirectory(logs.FullName);
     }
-    public static void OpenDirectory(string path)
+    public static void OpenDirectory(string path, string filename = null)
     {
-        var startInfo = new ProcessStartInfo(path)
-        {
-            UseShellExecute = true,
-        };
-        Process.Start(startInfo);
+        Process.Start("Explorer.exe", filename != null ? $"/select,{filename}" : path);
     }
     public static string SummaryTexts(byte id, bool isForChat)
     {
