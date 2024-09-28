@@ -1562,7 +1562,7 @@ public static class Utils
     {
         var logs = GetLogFolder();
         var filename = CopyLog(logs.FullName);
-        OpenDirectory("", filename);
+        OpenDirectory(filename);
         if (PlayerControl.LocalPlayer != null)
             HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, "ログフォルダにログを保存しました。Discordの不具合報告フォーラムにこのファイルを添付してください。");
     }
@@ -1573,22 +1573,22 @@ public static class Utils
         logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f => f.Delete());
         CopyLog(logs.FullName);
     }
-    public static string CopyLog(string folder)
+    public static string CopyLog(string path)
     {
         string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string fileName = $"{folder}/TownOfHost-v{Main.PluginVersion}-{t}.log";
+        string fileName = $"{path}/TownOfHost-v{Main.PluginVersion}-{t}.log";
         FileInfo file = new(@$"{System.Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         var logFile = file.CopyTo(fileName);
         return logFile.FullName;
     }
     public static void OpenLogFolder()
     {
-        var logs = GetLogFolder();
+        var logs = GetLogFolder(true);
         OpenDirectory(logs.FullName);
     }
-    public static void OpenDirectory(string path, string filename = null)
+    public static void OpenDirectory(string path)
     {
-        Process.Start("Explorer.exe", filename != null ? $"/select,{filename}" : path);
+        Process.Start("Explorer.exe", $"/select,{path}");
     }
     public static string SummaryTexts(byte id, bool isForChat)
     {
