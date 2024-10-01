@@ -1551,7 +1551,7 @@ public static class Utils
     }
     public static DirectoryInfo GetLogFolder(bool auto = false)
     {
-        var folder = Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/TownOfHost_Y/Logs");
+        var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/TownOfHost_Y/Logs");
         if (auto)
         {
             folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
