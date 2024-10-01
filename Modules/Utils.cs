@@ -1564,7 +1564,7 @@ public static class Utils
         var filename = CopyLog(logs.FullName);
         OpenDirectory(filename);
         if (PlayerControl.LocalPlayer != null)
-            HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, "ログフォルダにログを保存しました。Discordの不具合報告フォーラムにこのファイルを添付してください。");
+            HudManager.Instance?.Chat?.AddChat(PlayerControl.LocalPlayer, Translator.GetString("Message.LogsSavedInLogsFolder"));
     }
     public static void SaveNowLog()
     {
