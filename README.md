@@ -52,8 +52,6 @@ We also use a translator for all in-game translations into English. If there is 
 Thank you for finding and using TOH_Y!<br>
 
 ## ★リリース
-
-AmongUsバージョン : **2024.6.18**<br>
 **最新バージョンは[こちらからダウンロード](https://github.com/Yumenopai/TownOfHost_Y/releases/latest)**<br>
 
 ※[TownOfHost](https://github.com/tukasa0001/TownOfHost) Fork<br>
