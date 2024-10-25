@@ -3,7 +3,7 @@ using UnityEngine;
 
 using TownOfHostY.Roles.Core;
 using TownOfHostY.Roles.Core.Interfaces;
-using static TownOfHostY.Roles.Impostor.GodfatherAndJanitor;
+using static TownOfHostY.Roles.Unit.GodfatherAndJanitor;
 
 namespace TownOfHostY.Roles.Impostor;
 public sealed class Godfather : RoleBase, IImpostor

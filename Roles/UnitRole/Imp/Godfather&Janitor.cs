@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using AmongUs.GameOptions;
 using TownOfHostY.Roles.Core;
 
-namespace TownOfHostY.Roles.Impostor;
+namespace TownOfHostY.Roles.Unit;
 public sealed class GodfatherAndJanitor : RoleBase
 {
     public static readonly SimpleRoleInfo RoleInfo =

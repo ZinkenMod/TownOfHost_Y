@@ -2,7 +2,7 @@ using AmongUs.GameOptions;
 
 using TownOfHostY.Roles.Core;
 
-namespace TownOfHostY.Roles.Crewmate;
+namespace TownOfHostY.Roles.Unit;
 public sealed class CounselorAndMadDilemma : RoleBase
 {
     public static readonly SimpleRoleInfo RoleInfo =
