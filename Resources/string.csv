@@ -1001,7 +1001,7 @@ RefusingInfoLong,"(Add-ons):\nOnce he is about to be exiled, refuses to be exile
 "CanBeforeSchrodingerCatWinTheCrewmate","Can Win With Crewmates If No Team","役職変化前であれば、クルー陣営と勝利できる","薛定谔的猫未加入其他阵营前可以跟随船员阵营获胜","薛定諤的貓的陣營轉變前可以隨船員一起獲勝","Без команды он может победить с Членами Экипажа","Pode Ganhar Com Tripulantes"
 "SchrodingerCatExiledTeamChanges","Team Changes When Ejected","吊られた際、陣営が変化する","薛定谔的猫被放逐时会加入其他阵营","薛定諤的貓被丟出時陣營會轉變","Команда меняется после его Изгнания","Time Muda Quando Exilado"
 "SchrodingerCatCanSeeKillableTeammate","Can See Killable Teammate","変化した陣営のキル役職が分かる","变更阵营后可见带刀职业","陣營轉變後可以看見帶刀的隊友","Может видеть всю команду в которой он состоит",""
-"SchrodingerCatConsumeBullet","Consume Bullet for Change","陣営変化時にキル数を消費する","","","",""
+"SchrodingerCatConsumeBullet","Consume Bullet for Change","陣営変化時、キラーは回数制限付きキル数を消費する","","","",""
 "SchrodingerCatChangeKiller","Cat Change Killer","キルできる猫に変化する","","","",""
 "SchrodingerCatDeadDelay","Dead Delay for Change","キルできる猫に変化する時間","","","",""
 "SchrodingerCatRevengeOnExile","Revenge When Exiled","属性変化前に追放された時に誰かを道連れにする","被驱逐时复仇","","Месть во время изгнания","Vinagança Quando Exilado"
