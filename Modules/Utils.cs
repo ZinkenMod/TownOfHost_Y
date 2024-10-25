@@ -1396,6 +1396,7 @@ public static class Utils
                 || seer.Is(CustomRoles.Totocalcio)
                 || seer.Is(CustomRoles.Immoralist)
                 || seer.Is(CustomRoles.LoyalDoggy)
+                || seer.Is(CustomRoles.jO)
                 || VentEnterTask.HaveTask(seer)
 
                 || Duelist.CheckNotify(seer)
