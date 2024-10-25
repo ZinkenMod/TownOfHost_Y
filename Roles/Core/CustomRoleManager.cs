@@ -11,6 +11,7 @@ using TownOfHostY.Roles.Core.Interfaces;
 using TownOfHostY.Roles.Crewmate;
 using TownOfHostY.Roles.Impostor;
 using TownOfHostY.Roles.Neutral;
+using TownOfHostY.Roles.Unit;
 using TownOfHostY.Roles.AddOns.Common;
 
 namespace TownOfHostY.Roles.Core;
