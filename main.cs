@@ -52,7 +52,7 @@ namespace TownOfHostY
         // ==========
         //Sorry for many Japanese comments.
         public const string PluginGuid = "com.yumenopai.townofhosty";
-        public const string PluginVersion = "518.24.2";
+        public const string PluginVersion = "519.24.2";
         // サポートされている最低のAmongUsバージョン
         public static readonly string LowestSupportedVersion = "2024.8.13";
         // このバージョンのみで公開ルームを無効にする場合
@@ -261,6 +261,7 @@ namespace TownOfHostY
             ClassInjector.RegisterTypeInIl2Cpp<ErrorText>();
 
             Harmony.PatchAll();
+            Application.quitting += new Action(Utils.SaveNowLog);
         }
     }
     public enum CustomDeathReason
