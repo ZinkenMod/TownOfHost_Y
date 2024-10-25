@@ -1059,8 +1059,8 @@ RefusingInfoLong,"(Add-ons):\nOnce he is about to be exiled, refuses to be exile
 "Random","Random","ランダム","随机",
 
 # Unit
-"CounselorTaskTrigger","Counselor Trigger Tasks","カウンセラーの能力が使用できるタスク数",
-"CounselorChallengeMaxCount","Counselor Voting with Ability Count","カウンセラーの能力投票できる回数",
+"CounselorTaskTrigger","%counselor% Trigger Tasks","%counselor%の能力が使用できるタスク数",
+"CounselorChallengeMaxCount","%counselor% Voting with Ability Count","%counselor%の能力投票できる回数",
 "MadDilemmaResetAddonChangeCrew","MadDilemma Resets Addon After Change to Crewmate","マッドジレンマがクルーに改心後、属性をリセットする",
 "GodfatherKillCooldown","%godfather% Kill CoolDown","%godfather%のキルクール",
 "GodfatherLockDistance","%godfather% Kill Lock Distance For Janitor Kill","%godfather%のロックキルが起こる距離",
