@@ -569,6 +569,7 @@ public enum CustomRoles
     Jester,
     Opportunist,
     SchrodingerCat,
+    SchrodingerCatKiller,
     Terrorist,
     Executioner,
     Jackal,
