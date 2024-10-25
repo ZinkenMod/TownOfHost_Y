@@ -330,7 +330,6 @@ public abstract class VoteGuesser : RoleBase
         private void SetRoleList()
         {
             roleList = new();
-            var inChainShifter = false;
             foreach (CustomRoles role in CustomRolesHelper.AllStandardRoles.Where(r => r.IsEnable()))
             {
                 foreach (var targetRole in role.GetRoleAssignInfo()?.AssignUnitRoles)
