@@ -351,8 +351,8 @@ public static class Options
         OptionSaver.Initialize();
 
         //9人以上部屋で落ちる現象の対策
-        FixSpawnPacketSize = BooleanOptionItem.Create(2, "FixSpawnPacketSize", false, TabGroup.MainSettings, true)
-            .SetColor(new Color32(255, 255, 0, 255))
+        FixSpawnPacketSize = BooleanOptionItem.Create(3, "FixSpawnPacketSize", false, TabGroup.ModMainSettings, true)
+            .SetColor(new Color32(255, 91, 112, 255))
             .SetGameMode(CustomGameMode.All);
 
         // プリセット

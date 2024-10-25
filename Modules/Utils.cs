@@ -1568,7 +1568,7 @@ public static class Utils
     }
     public static void SaveNowLog()
     {
-        var logs = Directory.GetLogFolder(true);
+        var logs = GetLogFolder(true);
         // 7日以上前のログを削除
         logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f => f.Delete());
         CopyLog(logs.FullName);
