@@ -9,10 +9,10 @@ using TownOfHostY.Modules;
 using TownOfHostY.Roles;
 using TownOfHostY.Roles.Core;
 using TownOfHostY.Roles.Crewmate;
+using TownOfHostY.Roles.Unit;
 using TownOfHostY.Roles.AddOns.Common;
 using TownOfHostY.Roles.AddOns.Impostor;
 using TownOfHostY.Roles.AddOns.Crewmate;
-using TownOfHostY.CatchCat;
 
 namespace TownOfHostY;
 
@@ -385,8 +385,8 @@ public static class Options
         }
         if (Main.IsHalloween)
         {
-
-
+            JackOLantern.SetupRoleOptions();
+            JackOLantern.RoleInfo.OptionCreator?.Invoke();
         }
 
         // 常設 新役職

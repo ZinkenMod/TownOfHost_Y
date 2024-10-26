@@ -103,26 +103,18 @@ public sealed class Lantern : RoleBase
             case RoleTypes.Scientist:
             case RoleTypes.Engineer:
             case RoleTypes.Tracker:
-                foreach (var pc in Main.AllPlayerControls.Where(x => x != null && !x.Data.Disconnected))
-                {
-                    // ランタン(base:能力持ちクルー)視点
-                    if (player.PlayerId == PlayerControl.LocalPlayer.PlayerId) pc.StartCoroutine(pc.CoSetRole(nextRoleBaseTypes, true));
-                    else pc.RpcSetRoleDesync(nextRoleBaseTypes, player.GetClientId());
-                }
-                break;
-
             case RoleTypes.Noisemaker:
                 foreach (var pc in Main.AllPlayerControls.Where(x => x != null && !x.Data.Disconnected))
                 {
-                    // ランタン(base:Noisemaker)視点
-                    if (player.PlayerId == PlayerControl.LocalPlayer.PlayerId) pc.StartCoroutine(pc.CoSetRole(RoleTypes.Noisemaker, true));
-                    else pc.RpcSetRoleDesync(RoleTypes.Noisemaker, player.GetClientId());
+                    // base:能力持ちクルー視点
+                    if (player.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.SetRoleEx(nextRoleBaseTypes);
+                    else pc.RpcSetRoleDesync(nextRoleBaseTypes, player.GetClientId());
 
                     if (pc.PlayerId == player.PlayerId) continue;
 
                     //他クルー視点
-                    if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.StartCoroutine(player.CoSetRole(RoleTypes.Noisemaker, true));
-                    else player.RpcSetRoleDesync(RoleTypes.Noisemaker, pc.GetClientId());
+                    if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.SetRoleEx(nextRoleBaseTypes);
+                    else player.RpcSetRoleDesync(nextRoleBaseTypes, pc.GetClientId());
                 }
                 break;
 

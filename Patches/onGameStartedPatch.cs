@@ -189,7 +189,7 @@ class SelectRolesPatch
                 AssignDesyncRole(role, AllPlayers, ref assignedNum, BaseRole: info.BaseRoleType.Invoke());
             }
 
-            if (role == CustomRoles.jO)
+            if (role == CustomRoles.jO && CustomRoles.jO.IsPresent())
             {
                 // インポスター枠を使用するがクルーカウントの為-1に
                 assignedNumImpostors--;

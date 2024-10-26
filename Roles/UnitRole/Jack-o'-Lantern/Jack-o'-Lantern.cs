@@ -15,7 +15,7 @@ public sealed class JackOLantern : RoleBase
             CustomRoleTypes.Unit,
             (int)Options.offsetId.UnitSpecial + 0,
             //(int)Options.offsetId.UnitMix + 100,
-            SetupOptionItem,
+            null,
             "ジャック・オー・ランタン",
             "#e5a323",
             assignInfo: new RoleAssignInfo(CustomRoles.JackOLantern, CustomRoleTypes.Unit)
@@ -55,8 +55,24 @@ public sealed class JackOLantern : RoleBase
         LanternVisionDuringFixLight,
         LanternRoleReceivedExcludeNormalCrewmate
     }
-    private static void SetupOptionItem()
+    // 直接設置
+    public static void SetupRoleOptions()
     {
+        TextOptionItem.Create(41, "Head.LimitedTimeRoleH", TabGroup.UnitRoles)
+            .SetColor(RoleInfo.RoleColor);
+        var spawnOption = IntegerOptionItem.Create(RoleInfo.ConfigId, CustomRoles.JackOLantern.ToString(), new(0, 100, 10), 0, TabGroup.UnitRoles, false)
+            .SetColor(RoleInfo.RoleColor)
+            .SetValueFormat(OptionFormat.Percent)
+            .SetGameMode(CustomGameMode.Standard) as IntegerOptionItem;
+        var countOption = IntegerOptionItem.Create(RoleInfo.ConfigId + 1, "Maximum", new(1, 1, 1), 1, TabGroup.UnitRoles, false)
+            .SetParent(spawnOption)
+            .SetValueFormat(OptionFormat.Pair)
+            .SetFixValue(true)
+            .SetGameMode(CustomGameMode.Standard);
+
+        Options.CustomRoleSpawnChances.Add(RoleInfo.RoleName, spawnOption);
+        Options.CustomRoleCounts.Add(RoleInfo.RoleName, countOption);
+
         Dictionary<string, string> jackDic = new() { { "%jack%", Utils.ColorString(Palette.ImpostorRed, Utils.GetRoleName(CustomRoles.Jack)) } };
         Dictionary<string, string> joDic = new() { { "%jo%", Utils.ColorString(Palette.ImpostorRed, Utils.GetRoleName(CustomRoles.jO)) } };
         Dictionary<string, string> lanternDic = new() { { "%lantern%", Utils.ColorString(RoleInfo.RoleColor, Utils.GetRoleName(CustomRoles.Lantern)) } };

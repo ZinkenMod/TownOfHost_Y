@@ -76,7 +76,7 @@ namespace TownOfHostY
         // 新役職等(トップ掲載の常設役職)
         public static bool IsNewRole(this CustomRoles role)
         {
-            if (Main.IsHalloween && role == CustomRoles.Bakery)
+            if (Main.IsInitialRelease && role == CustomRoles.Bakery)
                 return true;
 
             return role is CustomRoles.SchrodingerCat
@@ -88,7 +88,8 @@ namespace TownOfHostY
             return role is CustomRoles.Lovers
                 or CustomRoles.Sympathizer
                 or CustomRoles.CounselorAndMadDilemma
-                or CustomRoles.GodfatherAndJanitor;
+                or CustomRoles.GodfatherAndJanitor
+                or CustomRoles.JackOLantern;
         }
         public static bool IsFixedCountRole(this CustomRoles role)
         {
@@ -107,6 +108,8 @@ namespace TownOfHostY
         {
             return role is CustomRoles.Counselor or CustomRoles.MadDilemma
                 or CustomRoles.Godfather or CustomRoles.Janitor
+                // 期間限定で
+                or CustomRoles.JackOLantern
                 or CustomRoles.Jack or CustomRoles.jO or CustomRoles.Lantern
                 or CustomRoles.Gang
                 or CustomRoles.SKMadmate

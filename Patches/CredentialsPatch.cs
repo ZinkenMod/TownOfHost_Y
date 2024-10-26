@@ -152,6 +152,15 @@ namespace TownOfHostY
                 {
                     SpecialEventText.color = Color.yellow;
                     SpecialEventText.text = $"Happy Birthday to {Main.ModName}!";
+                    if (CultureInfo.CurrentCulture.Name == "ja-JP")
+                        SpecialEventText.text += "<size=60%>\n期間限定：ポテンシャリスト・おにぎり屋復刻！</size>";
+                }
+                else if (Main.IsHalloween)
+                {
+                    SpecialEventText.text = "★happy Halloween★";
+                    if (CultureInfo.CurrentCulture.Name == "ja-JP")
+                        SpecialEventText.text += "<size=60%>\n期間限定：ジャック・オー・ランタン登場！</size>";
+                    SpecialEventText.color = Utils.GetRoleColor(CustomRoles.JackOLantern);
                 }
                 else if (Main.IsChristmas)
                 {

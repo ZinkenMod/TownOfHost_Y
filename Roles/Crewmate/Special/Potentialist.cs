@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using AmongUs.GameOptions;
 
 using TownOfHostY.Roles.Core;
+using TownOfHostY.Modules;
 
 namespace TownOfHostY.Roles.Crewmate;
 public sealed class Potentialist : RoleBase
@@ -108,6 +110,7 @@ public sealed class Potentialist : RoleBase
                     CustomRoles.Detector,
                     CustomRoles.Rabbit,
                     CustomRoles.NiceGuesser,
+                    CustomRoles.Elder,
 
                     CustomRoles.Sheriff,
                     CustomRoles.Hunter,
@@ -116,7 +119,11 @@ public sealed class Potentialist : RoleBase
                     CustomRoles.Chairman,
                     CustomRoles.Medic,
                     CustomRoles.Psychic,
-                    CustomRoles.Elder,
+
+                    CustomRoles.NormalEngineer,
+                    CustomRoles.NormalScientist,
+                    CustomRoles.NormalTracker,
+                    CustomRoles.NormalNoisemaker,
                 };
 
             if (CanChangeMad)
@@ -142,18 +149,17 @@ public sealed class Potentialist : RoleBase
                 Rand.Add(CustomRoles.SchrodingerCat);
                 Rand.Add(CustomRoles.AntiComplete);
                 Rand.Add(CustomRoles.LoveCutter);
-
-                Rand.Add(CustomRoles.Jackal);
-                Rand.Add(CustomRoles.Totocalcio);
                 Rand.Add(CustomRoles.God);
                 Rand.Add(CustomRoles.ChainShifter);
+
+                Rand.Add(CustomRoles.Totocalcio);
             }
             if ((MapNames)Main.NormalOptions.MapId is not MapNames.Polus and not MapNames.Fungle)
             {
                 Rand.Add(CustomRoles.VentManager);
             }
             var Role = Rand[rand.Next(Rand.Count)];
-            Player.RpcSetCustomRole(Role);
+            SetNextCustomRole(Player, Role);
 
             isPotentialistChanged = true;
             Logger.Info(player.GetRealName() + " 役職変更先:" + Role, "Potentialist");
@@ -166,6 +172,68 @@ public sealed class Potentialist : RoleBase
             }
         }
         return true;
+    }
+    // 今後移植？
+    void SetNextCustomRole(PlayerControl player, CustomRoles nextRole)
+    {
+        Logger.Info($"{player.GetNameWithRole()}：役職リストから{nextRole}を割り当てます", "Potentialist");
+        var nextRoleBaseTypes = nextRole.GetRoleTypes();
+        RoleTypes roleTypes;
+
+        switch (nextRoleBaseTypes)
+        {
+            case RoleTypes.Crewmate:
+                // なにもしない
+                break;
+            case RoleTypes.Scientist:
+            case RoleTypes.Engineer:
+            case RoleTypes.Tracker:
+            case RoleTypes.Noisemaker:
+                foreach (var pc in Main.AllPlayerControls.Where(x => x != null && !x.Data.Disconnected))
+                {
+                    // base:能力持ちクルー視点
+                    if (player.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.SetRoleEx(nextRoleBaseTypes);
+                    else pc.RpcSetRoleDesync(nextRoleBaseTypes, player.GetClientId());
+
+                    if (pc.PlayerId == player.PlayerId) continue;
+
+                    //他クルー視点
+                    if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.SetRoleEx(nextRoleBaseTypes);
+                    else player.RpcSetRoleDesync(nextRoleBaseTypes, pc.GetClientId());
+                }
+                break;
+            // shepeShifterなどはホストのみアビリティボタンについての問題があるため一旦Impostor
+            case RoleTypes.Impostor:
+            case RoleTypes.Shapeshifter:
+            case RoleTypes.Phantom:
+                foreach (var pc in Main.AllPlayerControls.Where(x => x != null && !x.Data.Disconnected))
+                {
+                    // base:impostor視点
+                    roleTypes = RoleTypes.Scientist;
+                    if (pc.PlayerId == player.PlayerId) roleTypes = RoleTypes.Impostor;
+                    else if (!pc.IsAlive()) roleTypes = RoleTypes.CrewmateGhost;
+                    else if (pc.GetCustomRole().GetRoleTypes() == RoleTypes.Noisemaker) roleTypes = RoleTypes.Noisemaker;
+
+                    if (player.PlayerId == PlayerControl.LocalPlayer.PlayerId) pc.StartCoroutine(pc.CoSetRole(roleTypes, true));
+                    else pc.RpcSetRoleDesync(roleTypes, player.GetClientId());
+
+                    if (pc.PlayerId == player.PlayerId) continue;
+
+                    //他クルー視点
+                    roleTypes = RoleTypes.Scientist;
+
+                    if (pc.PlayerId == PlayerControl.LocalPlayer.PlayerId) player.StartCoroutine(player.CoSetRole(roleTypes, true));
+                    else player.RpcSetRoleDesync(roleTypes, pc.GetClientId());
+                }
+                break;
+        }
+        player.RpcSetCustomRole(nextRole);
+
+        //色表示
+        NameColorManager.RemoveAll(player.PlayerId);
+
+        PlayerGameOptionsSender.SetDirty(player.PlayerId);
+        Utils.NotifyRoles(SpecifySeer: player);
     }
 
     public override void OverrideTrueRoleName(ref Color roleColor, ref string roleText)
