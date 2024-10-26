@@ -73,6 +73,16 @@ namespace TownOfHostY
             };
         }
 
+        // 新役職等(トップ掲載の常設役職)
+        public static bool IsNewRole(this CustomRoles role)
+        {
+            if (Main.IsHalloween && role == CustomRoles.Bakery)
+                return true;
+
+            return role is CustomRoles.SchrodingerCat
+                or CustomRoles.CharismaStar;
+        }
+
         public static bool IsPairRole(this CustomRoles role)
         {
             return role is CustomRoles.Lovers

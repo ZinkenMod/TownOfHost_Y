@@ -96,7 +96,7 @@ public sealed class Potentialist : RoleBase
                     CustomRoles.Seer,
                     CustomRoles.TimeManager,
                     CustomRoles.Bakery,
-                    //CustomRoles.TaskManager,
+                    CustomRoles.TaskManager,
                     CustomRoles.Nekomata,
                     CustomRoles.Express,
                     CustomRoles.SeeingOff,
@@ -108,6 +108,15 @@ public sealed class Potentialist : RoleBase
                     CustomRoles.Detector,
                     CustomRoles.Rabbit,
                     CustomRoles.NiceGuesser,
+
+                    CustomRoles.Sheriff,
+                    CustomRoles.Hunter,
+                    CustomRoles.SillySheriff,
+                    CustomRoles.GrudgeSheriff,
+                    CustomRoles.Chairman,
+                    CustomRoles.Medic,
+                    CustomRoles.Psychic,
+                    CustomRoles.Elder,
                 };
 
             if (CanChangeMad)
@@ -117,6 +126,13 @@ public sealed class Potentialist : RoleBase
                 Rand.Add(CustomRoles.MadNimrod);
                 Rand.Add(CustomRoles.MadJester);
                 Rand.Add(CustomRoles.MadGuesser);
+
+                Rand.Add(CustomRoles.MadSnitch);
+                Rand.Add(CustomRoles.MadNatureCalls);
+                Rand.Add(CustomRoles.MadBrackOuter);
+                Rand.Add(CustomRoles.MadSheriff);
+                Rand.Add(CustomRoles.MadScientist);
+                Rand.Add(CustomRoles.MadConnecter);
             }
             if (CanChangeNeutral)
             {
@@ -126,6 +142,11 @@ public sealed class Potentialist : RoleBase
                 Rand.Add(CustomRoles.SchrodingerCat);
                 Rand.Add(CustomRoles.AntiComplete);
                 Rand.Add(CustomRoles.LoveCutter);
+
+                Rand.Add(CustomRoles.Jackal);
+                Rand.Add(CustomRoles.Totocalcio);
+                Rand.Add(CustomRoles.God);
+                Rand.Add(CustomRoles.ChainShifter);
             }
             if ((MapNames)Main.NormalOptions.MapId is not MapNames.Polus and not MapNames.Fungle)
             {

@@ -378,13 +378,25 @@ public static class Options
             .SetGameMode(CustomGameMode.All);
 
         // SpecialEvent
-        if (Main.IsAprilFool)
+        if (Main.IsInitialRelease)
         {
             Potentialist.SetupRoleOptions();
             Potentialist.RoleInfo.OptionCreator?.Invoke();
         }
+        if (Main.IsHalloween)
+        {
 
-        sortedRoleInfo.Where(role => !role.RoleName.IsDontShowOptionRole()).Do(info =>
+
+        }
+
+        // 常設 新役職
+        sortedRoleInfo.Where(role => role.RoleName.IsNewRole()).Do(info =>
+        {
+            SetupRoleOptions(info);
+            info.OptionCreator?.Invoke();
+        });
+        // 常設
+        sortedRoleInfo.Where(role => !role.RoleName.IsDontShowOptionRole() && !role.RoleName.IsNewRole()).Do(info =>
         {
             SetupRoleOptions(info);
             info.OptionCreator?.Invoke();
