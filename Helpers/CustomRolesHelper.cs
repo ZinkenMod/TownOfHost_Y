@@ -107,6 +107,7 @@ namespace TownOfHostY
         {
             return role is CustomRoles.Counselor or CustomRoles.MadDilemma
                 or CustomRoles.Godfather or CustomRoles.Janitor
+                or CustomRoles.Jack or CustomRoles.jO or CustomRoles.Lantern
                 or CustomRoles.Gang
                 or CustomRoles.SKMadmate
 
@@ -120,6 +121,7 @@ namespace TownOfHostY
                 or CustomRoles.MadSnitch
                 or CustomRoles.MadDilemma
                 or CustomRoles.MadConnecter
+                or CustomRoles.jO
 
                 or CustomRoles.Jackal or CustomRoles.JClient or
                 CustomRoles.LastImpostor or CustomRoles.CompleteCrew;
@@ -175,7 +177,8 @@ namespace TownOfHostY
                 CustomRoles.PlatonicLover or
                 CustomRoles.Totocalcio or
                 CustomRoles.MadSheriff or
-                CustomRoles.MadConnecter;
+                CustomRoles.MadConnecter or
+                CustomRoles.jO;
         }
 
         //CC

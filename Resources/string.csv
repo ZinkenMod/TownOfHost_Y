@@ -427,6 +427,11 @@ DSchrodingerCatInfo,You are now on Team Darkhide,ダークハイドの味方に�
 "Godfather","Godfather","ゴッドファーザー",
 "Janitor","Janitor","ジャニター",
 
+"JackOLantern","Jack-O'-Lantern","ジャック・オー・ランタン",
+"Jack","Jack","ジャック",
+"jO","'O'(madmate)","オー(マッド)",
+"Lantern","Lantern","ランタン",
+
 ## Info
 "CounselorAndMadDilemmaInfo","Unit","ユニット",
 "CounselorInfo","Isn't it time for a change of heart?","そろそろ改心しませんか？",
@@ -436,6 +441,11 @@ DSchrodingerCatInfo,You are now on Team Darkhide,ダークハイドの味方に�
 "GodfatherInfo","Let's have Janitor clean up the target","連携して証拠を隠蔽させろ",
 "JanitorInfo","Cover up the evidence","連携して証拠を隠蔽しろ",
 
+"JackOLanternInfo","Unit","ユニット",
+"JackInfo","Take away the Role, don't reinstate","役職を奪い、復活させるな",
+"jOInfo","Detect Role and send to Jack","役職を検知し、ジャックに送信せよ",
+"LanternInfo","Receive Role from the dead","死者から役職を受け取れ",
+
 ## InfoLong
 "CounselorAndMadDilemmaInfoLong","(Unit):\n\nCounselor(Crewmates)\nCounseling is available when the counselor is alive and has completed certain tasks.\nWhen Counselor votes for a MadDilemma at the time of the meeting, MadDilemma can be made to be the crewmate's.\n\nMad Dilemma(Impostors):\nJust a Madmate for unit positions. Let's take the Impostor's side. Customize the attributes from the settings.\nAfter being counseled by a counselor, a person becomes a crewmate. Even if you become a crewmate, they can use their attributes as they are.","[ユニット]\n\nカウンセラー[クルー陣営]\nカウンセラーが生存している且つ、一定タスク完了した時からカウンセリングを行うことが可能。\n会議時にカウンセラーの投票した先がマッドジレンマの時、マッドジレンマをクルー陣営にさせることができる。\n\nマッドジレンマ[インポスター陣営]\nユニット役職用のただのマッドメイト。属性のカスタマイズ可能。\nカウンセラーによりカウンセリングを受けるとクルーメイトになる。クルーになっても属性はそのまま使用出来る。",
 "CounselorInfoLong","(Crewmates)\nCounseling is available when the counselor is alive and has completed certain tasks.\nWhen Counselor votes for a MadDilemma at the time of the meeting, MadDilemma can be made to be the crewmate's.","[クルー陣営]\nユニット役職の片割れ。カウンセラーが生存している且つ、一定タスク完了した時からカウンセリングを行うことが可能。\n会議時にカウンセラーの投票した先がマッドジレンマの時、マッドジレンマをクルー陣営にさせることができる。",
@@ -444,6 +454,11 @@ DSchrodingerCatInfo,You are now on Team Darkhide,ダークハイドの味方に�
 "GodfatherAndJanitorInfoLong","(Unit):\nAn Impostor unit where 2 player can work together to make a kill without a dead body.\nIf Godfather attempts to kill someone near Janitor, the target player becomes a target for Janitor and is stranded.\nToward the player that Godfather tried to kill, Janitor presses the kill button,the target is erased.\nWhen after godfather dead, Can kill(Setting).if can't kill setting, suicide.","[インポスター陣営]\n二人で協力することで死体なしでキルが出来るインポスターユニット。ゴッドファーザーの能力は基本通常インポスターと変わらないが、ジャニターは通常キルが出来ない掃除専門役職。\nゴッドファーザーがジャニターの近くで誰かをキルしようとすると、その対象プレイヤーはジャニターへのターゲットとなり足止めされる。ターゲットに向かってジャニターがキルボタンを押すと、対象者は死体なしで死亡する。なお、ジャニターが死体を消せなかった場合、ターゲットは会議開始の直前で死亡する。\nゴッドファーザー死亡後、ジャニターのキル能力が解放されるか設定可能。オフの場合、ゴッドファーザー死亡時にジャニターは後追い自殺する。"
 "GodfatherInfoLong","(Impostors):\nImpostor to have Janitor clean the target.\nIf Godfather attempts to kill someone near Janitor, the target player becomes a target for Janitor and is stranded.\nToward the player that Godfather tried to kill, Janitor presses the kill button,the target is erased.","[インポスター陣営]\nジャニターに対象を掃除してもらうことができるインポスター。\n基本は通常インポスターと同様の能力。自身がジャニターの近くで誰かをキルしようとすると、その対象プレイヤーはジャニターへのターゲットとなり足止めされる。さらにその対象をジャニターがキルすることで死体なしでキルすることができる。"
 "JanitorInfoLong","(Impostors):\nImpostor that can kill a subject without a dead body. Normal kills are not possible.\nIf Godfather attempts to kill someone near Janitor, the target player becomes a target for Janitor and is stranded.\nToward the player that Godfather tried to kill, Janitor presses the kill button,the target is erased.\nWhen after godfather dead, Can kill(Setting).if can't kill setting, suicide.","[インポスター陣営]\n死体を作らず証拠隠滅できるインポスター。通常キルは出来ない掃除専門役職。\nゴッドファーザーがジャニターの近くで誰かをキルしようとすると、その対象プレイヤーはジャニターへのターゲットとなり足止めされる。ターゲットに向かってジャニターがキルボタンを押すと、対象者は死体なしで死亡する。\nゴッドファーザー死亡後、キル能力が解放されるか設定可能。オフの場合、ゴッドファーザー死亡時にジャニターは後追い自殺する。",
+
+"JackOLanternInfoLong","","[ユニット]\nハロウィン限定の3人に割り当てられる役職。\n\nジャック[インポスター陣営]\nダブルクリックを使い分ける。シングルクリックで能力キルを起こし、キルすると同時に対象がクルー陣営なら役職を素のクルーにする(回数制限有り)。ダブルクリックでは通常キル。\nオーから他人の役職情報を受け取った時、リアクターフラッシュによる通知が来る。\n\nオー(マッド)[インポスター陣営]\nクルーだがインポスターの味方をする。オーはジャックを含めたインポスターと内通している状態で開始する。インポスターにキルされることがない。\nキルボタンを使用すると、対象の役職を知ることが出来る(キル無し、無制限)。シェイプボタンで既に役職を知っている中から対象を選択すると、ジャックに対象の人の役職を知らせることが出来る(変身無し、回数制限有り)。\n\nランタン[クルー陣営]\n自身の停電視界が緩和される。また、オーへのランタン役職透けが起こらない。タスク全完了時、死亡しているクルー陣営からランダムな役職を受け取ることが出来る。その後ランタンの能力は失う。",
+"JackInfoLong","","[インポスター陣営]\nダブルクリックを使い分ける。シングルクリックで能力キルを起こし、キルすると同時に対象がクルー陣営なら役職を素のクルーにする(回数制限有り)。ダブルクリックでは通常キル。\nオーから他人の役職情報を受け取った時、リアクターフラッシュによる通知が来る。",
+"jOInfoLong","","[インポスター陣営]\nクルーだがインポスターの味方をする。オーはジャックを含めたインポスターと内通している状態で開始する。インポスターにキルされることがない。\nキルボタンを使用すると、対象の役職を知ることが出来る(キル無し、無制限)。シェイプボタンで既に役職を知っている中から対象を選択すると、ジャックに対象の人の役職を知らせることが出来る(変身無し、回数制限有り)。",
+"LanternInfoLong","","[クルー陣営]\n自身の停電視界が緩和される。また、オーへのランタン役職透けが起こらない。タスク全完了時、死亡しているクルー陣営からランダムな役職を受け取ることが出来る。その後ランタンの能力は失う。",
 
 
 "# HideAndSeek"
@@ -1079,6 +1094,14 @@ RefusingInfoLong,"(Add-ons):\nOnce he is about to be exiled, refuses to be exile
 "JanitorAfterGotfatherDeadIsAlive","%janitor% Alive After Godfather Dead ","%janitor%はゴットファーザー死亡後も生存する",
 "JanitorCanKill","%janitor% Can Kill","%janitor%がキル能力を持つ",
 "JanitorKillCooldown","%janitor% Kill CoolDown","%janitor%のキルクール",
+"JackKillCooldown","%jack% Kill CoolDown","%jack%のキルクール",
+"JackRoleRemoveKillCount","%jack% Remove Role Kill Max Count","%jack%の役職削除キル回数",
+"jORoleDetectCooldown","%jo% Role Detect Cooldown","%jo%の役職検知クールダウン",
+"jOCanDetectNeutral","Can Detect Neutral","%jo%はニュートラルを検知できる",
+"jOSendRoleCount","%jo% Send Role to Jack Max Count","%jo%のジャックへの役職送信回数",
+"jOCanVent","%jo% Can Use Vent","%jo%がベントを使える",
+"LanternVisionDuringFixLight","%lantern% Vision During Fix Light","%lantern%の停電時の視界倍率",
+"LanternRoleReceivedExcludeNormalCrewmate","%lantern% Role Received Exclude NormalCrewmate","%lantern%の受け取る役職は通常クルーを除く",
 
 # アドオン
 #"NumberOfLovers","Number Of Lovers (Pairs)","ラバーズの組数(x2人数)","恋人对数","戀人最大數量(2位玩家)","Количество Любовников (x2участника)","Quantidade de Amantes (Pares)"
@@ -1461,8 +1484,8 @@ PanAlive25,\nBread was served by the bakery.\nㅤ,\nパン屋は{0}に向けて�
 "ChaserChase","Chase","チェイス",
 "GodfatherLock","Lock","ロック",
 "MadConnecterConnect","Connect","内通",
-"CharismaStarGatherButtonText","Gather","集合"
-
+"CharismaStarGatherButtonText","Gather","集合",
+"jODetect","Detect","検知",
 
 "killer","Killer","キラー","杀手",
 "AntiAdminerAD","Warning Admin","アドミン注意！","管理室地图注意",,

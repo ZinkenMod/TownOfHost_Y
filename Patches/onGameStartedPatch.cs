@@ -163,7 +163,7 @@ class SelectRolesPatch
             AllPlayers.Add(pc);
         }
 
-        //Desync系の役職割り当て
+        //GM割り当て
         if (Options.EnableGM.GetBool())
         {
             AllPlayers.RemoveAll(x => x == PlayerControl.LocalPlayer);
@@ -172,6 +172,7 @@ class SelectRolesPatch
         }
         foreach (var (role, info) in CustomRoleManager.AllRolesInfo)
         {
+            //Desync系の役職割り当て
             if (info.IsDesyncImpostor)
             {
                 switch (role)
@@ -186,6 +187,12 @@ class SelectRolesPatch
                 }
 
                 AssignDesyncRole(role, AllPlayers, ref assignedNum, BaseRole: info.BaseRoleType.Invoke());
+            }
+
+            if (role == CustomRoles.jO)
+            {
+                // インポスター枠を使用するがクルーカウントの為-1に
+                assignedNumImpostors--;
             }
         }
 
