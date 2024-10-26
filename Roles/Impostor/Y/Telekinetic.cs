@@ -13,8 +13,7 @@ public sealed class Telekinetic : RoleBase, IImpostor
             CustomRoles.Telekinetic,
             () => RoleTypes.Impostor,
             CustomRoleTypes.Impostor,
-            (int)Options.offsetId.ImpSpecial + 400,
-            //(int)Options.offsetId.ImpY + 2100,
+            (int)Options.offsetId.ImpY + 2100,
             SetupOptionItem,
             "テレキネス"
         );

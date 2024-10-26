@@ -17,8 +17,7 @@ public sealed class CharismaStar : RoleBase, IImpostor
             CustomRoles.CharismaStar,
             () => RoleTypes.Phantom,
             CustomRoleTypes.Impostor,
-            (int)Options.offsetId.ImpSpecial + 200,
-            //(int)Options.offsetId.ImpY + 1900,
+            (int)Options.offsetId.ImpY + 1900,
             SetUpOptionItem,
             "カリスマスター"
         );

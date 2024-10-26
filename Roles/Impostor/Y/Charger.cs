@@ -16,8 +16,7 @@ public sealed class Charger : RoleBase, IImpostor
             CustomRoles.Charger,
             () => RoleTypes.Phantom,
             CustomRoleTypes.Impostor,
-            (int)Options.offsetId.ImpSpecial + 0,
-            //(int)Options.offsetId.ImpY + 1700,
+            (int)Options.offsetId.ImpY + 1700,
             SetUpOptionItem,
             "チャージャー"
         );
