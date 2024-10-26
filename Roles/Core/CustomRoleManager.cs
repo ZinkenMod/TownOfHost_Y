@@ -496,6 +496,7 @@ public enum CustomRoles
 
     Godfather,
     Janitor,
+    Jack,
     //Madmate
     Madmate,
     MadGuardian,
@@ -511,6 +512,7 @@ public enum CustomRoles
     MadConnecter,
 
     MadDilemma,
+    jO,
     SKMadmate,
     //Crewmate(Vanilla)
     Engineer,
@@ -562,6 +564,7 @@ public enum CustomRoles
     Elder,
 
     Counselor,
+    Lantern,
     Potentialist,
     //Neutral
     Arsonist,
@@ -595,6 +598,7 @@ public enum CustomRoles
     GM,
     CounselorAndMadDilemma,
     GodfatherAndJanitor,
+    JackOLantern,
     MaxMain,
     /************/
 
