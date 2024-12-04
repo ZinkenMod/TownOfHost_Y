@@ -26,7 +26,7 @@ namespace TownOfHostY
     {
         // == プログラム設定 / Program Config ==
         // modの名前 / Mod Name (Default: Town Of Host)
-        public static readonly string ModName = "Town Of Zinken";
+        public static readonly string ModName = "Town Of zinken";
         // modの色 / Mod Color (Default: #00bfff)
         public static readonly string ModColor = "#ffff00";
         // 公開ルームを許可する / Allow Public Room (Default: true)
